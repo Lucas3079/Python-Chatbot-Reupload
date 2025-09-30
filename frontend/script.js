@@ -39,14 +39,9 @@ function initializeApp() {
     const hasUsedBefore = localStorage.getItem('capbot-has-used');
     console.log('hasUsedBefore:', hasUsedBefore);
     
-    // Mostrar mensagem de boas-vindas se não há conversas salvas
-    if (!hasUsedBefore || chatHistory.length === 0) {
-        console.log('Showing welcome message');
-        showWelcomeMessage();
-    } else {
-        console.log('Loading existing chat');
-        loadChat(chatHistory[0].id);
-    }
+    // Sempre mostrar mensagem de boas-vindas em chat novo
+    console.log('Showing welcome message for new chat');
+    showWelcomeMessage();
 }
 
 function loadSidebarState() {
@@ -97,8 +92,8 @@ function startNewChat() {
     currentChatId = null;
     chatMessages.innerHTML = '';
     
-    // Adicionar mensagem de boas-vindas
-    addMessage('assistant', "Olá! Eu sou a CapBot, uma inteligência artificial da Capgemini criada para fazer análises financeiras. Como posso ajudar você hoje?", null, false);
+    // Mostrar tela de boas-vindas
+    showWelcomeMessage();
     
     // Atualizar a lista de conversas
     updateChatList();
@@ -415,10 +410,13 @@ async function sendMessage() {
     const message = userInput.value.trim();
     if (message === '') return;
 
-    // Esconder a tela de boas-vindas se estiver visível
-    if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
-        hideWelcomeScreen();
-    }
+    // Esconder a mensagem de boas-vindas se estiver visível
+    const welcomeElements = document.querySelectorAll('[id*="welcome"]');
+    welcomeElements.forEach(element => {
+        if (element.style.display !== 'none') {
+            element.style.display = 'none';
+        }
+    });
 
     addMessage('user', message);
     userInput.value = ''; // Limpa o input imediatamente
