@@ -39,9 +39,14 @@ function initializeApp() {
     const hasUsedBefore = localStorage.getItem('capbot-has-used');
     console.log('hasUsedBefore:', hasUsedBefore);
     
-    // Sempre mostrar mensagem de boas-vindas em chat novo
-    console.log('Showing welcome message for new chat');
-    showWelcomeMessage();
+    // Se há conversas salvas, carregar a última; senão, mostrar boas-vindas
+    if (chatHistory.length > 0) {
+        console.log('Loading existing chat');
+        loadChat(chatHistory[0].id);
+    } else {
+        console.log('Showing welcome message for new chat');
+        showWelcomeMessage();
+    }
 }
 
 function loadSidebarState() {
