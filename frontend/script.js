@@ -39,12 +39,7 @@ function initializeApp() {
     const hasUsedBefore = localStorage.getItem('capbot-has-used');
     console.log('hasUsedBefore:', hasUsedBefore);
     
-    // FORÇAR tela de boas-vindas para teste
-    console.log('FORCING welcome screen to show');
-    showWelcomeScreen();
-    
-    // Código original comentado para teste
-    /*
+    // Mostrar tela de boas-vindas se não há conversas salvas
     if (!hasUsedBefore || chatHistory.length === 0) {
         console.log('Showing welcome screen');
         showWelcomeScreen();
@@ -52,7 +47,6 @@ function initializeApp() {
         console.log('Loading existing chat');
         loadChat(chatHistory[0].id);
     }
-    */
 }
 
 function loadSidebarState() {
