@@ -33,11 +33,14 @@ function initializeApp() {
     
     // Verificar se é a primeira vez que o usuário abre a IA
     const hasUsedBefore = localStorage.getItem('capbot-has-used');
+    console.log('hasUsedBefore:', hasUsedBefore);
     
     if (!hasUsedBefore) {
         // Mostrar tela de boas-vindas
+        console.log('First time user - showing welcome screen');
         showWelcomeScreen();
     } else {
+        console.log('Returning user - not showing welcome screen');
         // Se não há conversas salvas, iniciar uma nova
         if (chatHistory.length === 0) {
             startNewChat();
@@ -205,8 +208,13 @@ function updateChatList() {
 
 // Funções da tela de boas-vindas
 function showWelcomeScreen() {
+    console.log('showWelcomeScreen called');
+    console.log('welcomeScreen element:', welcomeScreen);
     if (welcomeScreen) {
         welcomeScreen.classList.remove('hidden');
+        console.log('Welcome screen shown');
+    } else {
+        console.log('Welcome screen element not found');
     }
 }
 
@@ -228,6 +236,12 @@ function sendSuggestion(suggestionText) {
     // Enviar a sugestão como mensagem
     userInput.value = suggestionText;
     sendMessage();
+}
+
+// Função para forçar a tela de boas-vindas (para debug)
+function forceWelcomeScreen() {
+    localStorage.removeItem('capbot-has-used');
+    showWelcomeScreen();
 }
 
 function deleteChat(chatId, event) {
