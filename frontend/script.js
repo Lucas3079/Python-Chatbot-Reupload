@@ -211,12 +211,8 @@ function showWelcomeScreen() {
     console.log('showWelcomeScreen called');
     console.log('welcomeScreen element:', welcomeScreen);
     if (welcomeScreen) {
-        welcomeScreen.classList.remove('hidden');
         welcomeScreen.style.display = 'flex';
-        welcomeScreen.style.opacity = '1';
-        welcomeScreen.style.visibility = 'visible';
-        console.log('Welcome screen shown - classes:', welcomeScreen.className);
-        console.log('Welcome screen style:', welcomeScreen.style.cssText);
+        console.log('Welcome screen shown');
     } else {
         console.log('Welcome screen element not found');
     }
@@ -224,7 +220,7 @@ function showWelcomeScreen() {
 
 function hideWelcomeScreen() {
     if (welcomeScreen) {
-        welcomeScreen.classList.add('hidden');
+        welcomeScreen.style.display = 'none';
     }
     // Marcar que o usuário já usou a IA
     localStorage.setItem('capbot-has-used', 'true');
@@ -254,17 +250,7 @@ function testWelcomeScreen() {
     const element = document.getElementById('welcome-screen');
     console.log('Element found:', element);
     if (element) {
-        element.classList.remove('hidden');
         element.style.display = 'flex';
-        element.style.opacity = '1';
-        element.style.visibility = 'visible';
-        element.style.position = 'absolute';
-        element.style.top = '0';
-        element.style.left = '0';
-        element.style.right = '0';
-        element.style.bottom = '0';
-        element.style.zIndex = '1000';
-        element.style.background = 'var(--bg-primary)';
         console.log('Welcome screen forced to show');
     }
 }

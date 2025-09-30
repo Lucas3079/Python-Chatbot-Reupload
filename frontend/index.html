@@ -76,45 +76,46 @@
             </div>
 
             <div class="chat-messages" id="chat-messages">
-                <!-- Tela de Boas-vindas -->
-                <div class="welcome-screen hidden" id="welcome-screen">
-                    <div class="welcome-content">
-                        <div class="welcome-title">
-                            <h1>Bem-vindo à CapBot</h1>
-                            <p>Sua assistente de análise financeira da Capgemini</p>
-                        </div>
-                        
-                        <div class="suggestions-container">
-                            <h3>Comece com uma dessas perguntas:</h3>
-                            <div class="suggestion-cards">
-                                <div class="suggestion-card" onclick="sendSuggestion('Quanto recebi de salário líquido em maio de 2025? (Ana Souza)')">
-                                    <div class="suggestion-icon">💰</div>
-                                    <div class="suggestion-text">
-                                        <h4>Salário Líquido</h4>
-                                        <p>Quanto recebi de salário líquido em maio de 2025? (Ana Souza)</p>
-                                    </div>
+                <!-- Mensagens do chat serão inseridas aqui -->
+            </div>
+            
+            <!-- Tela de Boas-vindas - Fora da área de mensagens -->
+            <div class="welcome-screen" id="welcome-screen" style="display: none;">
+                <div class="welcome-content">
+                    <div class="welcome-title">
+                        <h1>Bem-vindo à CapBot</h1>
+                        <p>Sua assistente de análise financeira da Capgemini</p>
+                    </div>
+                    
+                    <div class="suggestions-container">
+                        <h3>Comece com uma dessas perguntas:</h3>
+                        <div class="suggestion-cards">
+                            <div class="suggestion-card" onclick="sendSuggestion('Quanto recebi de salário líquido em maio de 2025? (Ana Souza)')">
+                                <div class="suggestion-icon">💰</div>
+                                <div class="suggestion-text">
+                                    <h4>Salário Líquido</h4>
+                                    <p>Quanto recebi de salário líquido em maio de 2025? (Ana Souza)</p>
                                 </div>
-                                
-                                <div class="suggestion-card" onclick="sendSuggestion('Qual foi o total líquido pago no primeiro trimestre de 2025?')">
-                                    <div class="suggestion-icon">📊</div>
-                                    <div class="suggestion-text">
-                                        <h4>Total Trimestral</h4>
-                                        <p>Qual foi o total líquido pago no primeiro trimestre de 2025?</p>
-                                    </div>
+                            </div>
+                            
+                            <div class="suggestion-card" onclick="sendSuggestion('Qual foi o total líquido pago no primeiro trimestre de 2025?')">
+                                <div class="suggestion-icon">📊</div>
+                                <div class="suggestion-text">
+                                    <h4>Total Trimestral</h4>
+                                    <p>Qual foi o total líquido pago no primeiro trimestre de 2025?</p>
                                 </div>
-                                
-                                <div class="suggestion-card" onclick="sendSuggestion('Quem recebeu o maior bônus em 2025?')">
-                                    <div class="suggestion-icon">🏆</div>
-                                    <div class="suggestion-text">
-                                        <h4>Maior Bônus</h4>
-                                        <p>Quem recebeu o maior bônus em 2025?</p>
-                                    </div>
+                            </div>
+                            
+                            <div class="suggestion-card" onclick="sendSuggestion('Quem recebeu o maior bônus em 2025?')">
+                                <div class="suggestion-icon">🏆</div>
+                                <div class="suggestion-text">
+                                    <h4>Maior Bônus</h4>
+                                    <p>Quem recebeu o maior bônus em 2025?</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Mensagens do chat serão inseridas aqui -->
             </div>
 
 
