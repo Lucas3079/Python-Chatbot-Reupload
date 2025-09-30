@@ -35,19 +35,15 @@ function initializeApp() {
     const hasUsedBefore = localStorage.getItem('capbot-has-used');
     console.log('hasUsedBefore:', hasUsedBefore);
     
-    if (!hasUsedBefore) {
+    // Sempre mostrar tela de boas-vindas se não há conversas salvas
+    if (!hasUsedBefore || chatHistory.length === 0) {
         // Mostrar tela de boas-vindas
-        console.log('First time user - showing welcome screen');
+        console.log('Showing welcome screen');
         showWelcomeScreen();
     } else {
-        console.log('Returning user - not showing welcome screen');
-        // Se não há conversas salvas, iniciar uma nova
-        if (chatHistory.length === 0) {
-            startNewChat();
-        } else {
-            // Carregar a última conversa
-            loadChat(chatHistory[0].id);
-        }
+        console.log('Loading existing chat');
+        // Carregar a última conversa
+        loadChat(chatHistory[0].id);
     }
 }
 
