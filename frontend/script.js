@@ -39,14 +39,9 @@ function initializeApp() {
     const hasUsedBefore = localStorage.getItem('capbot-has-used');
     console.log('hasUsedBefore:', hasUsedBefore);
     
-    // Se há conversas salvas, carregar a última; senão, mostrar boas-vindas
-    if (chatHistory.length > 0) {
-        console.log('Loading existing chat');
-        loadChat(chatHistory[0].id);
-    } else {
-        console.log('Showing welcome message for new chat');
-        showWelcomeMessage();
-    }
+    // Sempre mostrar mensagem de boas-vindas ao inicializar
+    console.log('Showing welcome message on app start');
+    showWelcomeMessage();
 }
 
 function loadSidebarState() {
@@ -208,18 +203,78 @@ function updateChatList() {
 function showWelcomeMessage() {
     console.log('showWelcomeMessage called');
     console.log('welcomeMessage element:', welcomeMessage);
-    if (welcomeMessage) {
-        // Limpar mensagens existentes
-        chatMessages.innerHTML = '';
-        // Adicionar a mensagem de boas-vindas
-        chatMessages.appendChild(welcomeMessage.cloneNode(true));
-        // Mostrar a mensagem
-        const clonedMessage = chatMessages.lastElementChild;
-        clonedMessage.style.display = 'block';
-        console.log('Welcome message shown');
-    } else {
-        console.log('Welcome message element not found');
-    }
+    
+    // Limpar mensagens existentes
+    chatMessages.innerHTML = '';
+    
+    // Criar mensagem de boas-vindas diretamente
+    const welcomeContainer = document.createElement('div');
+    welcomeContainer.innerHTML = `
+        <div class="message-container assistant">
+            <div class="message-avatar">
+                <img src="capgemini-icon.png.png" alt="CapBot" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%; display: block;">
+            </div>
+            <div class="message-bubble">
+                <div class="capbot-header">CapBot</div>
+                <div style="text-align: center; padding: 2rem; max-width: 600px; margin: 0 auto;">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 0.8rem; color: var(--text-primary);">Bem-vindo à CapBot</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Sua assistente de análise financeira da Capgemini</p>
+                    
+                    <h4 style="margin-bottom: 1.2rem; color: var(--text-primary);">Comece com uma dessas perguntas:</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; justify-items: center;">
+                        <div onclick="sendSuggestion('Quanto recebi de salário líquido em maio de 2025? (Ana Souza)')" style="
+                            background: var(--bg-tertiary);
+                            border: 1px solid var(--border-color);
+                            border-radius: 10px;
+                            padding: 1.2rem;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            width: 100%;
+                            max-width: 200px;
+                        " onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'">
+                            <div style="font-size: 1.8rem; margin-bottom: 0.6rem;">💰</div>
+                            <h5 style="margin-bottom: 0.4rem; color: var(--accent-primary); font-size: 0.95rem;">Salário Líquido</h5>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.3;">Quanto recebi de salário líquido em maio de 2025? (Ana Souza)</p>
+                        </div>
+                        
+                        <div onclick="sendSuggestion('Qual foi o total líquido pago no primeiro trimestre de 2025?')" style="
+                            background: var(--bg-tertiary);
+                            border: 1px solid var(--border-color);
+                            border-radius: 10px;
+                            padding: 1.2rem;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            width: 100%;
+                            max-width: 200px;
+                        " onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'">
+                            <div style="font-size: 1.8rem; margin-bottom: 0.6rem;">📊</div>
+                            <h5 style="margin-bottom: 0.4rem; color: var(--accent-primary); font-size: 0.95rem;">Total Trimestral</h5>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.3;">Qual foi o total líquido pago no primeiro trimestre de 2025?</p>
+                        </div>
+                        
+                        <div onclick="sendSuggestion('Quem recebeu o maior bônus em 2025?')" style="
+                            background: var(--bg-tertiary);
+                            border: 1px solid var(--border-color);
+                            border-radius: 10px;
+                            padding: 1.2rem;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            width: 100%;
+                            max-width: 200px;
+                        " onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'">
+                            <div style="font-size: 1.8rem; margin-bottom: 0.6rem;">🏆</div>
+                            <h5 style="margin-bottom: 0.4rem; color: var(--accent-primary); font-size: 0.95rem;">Maior Bônus</h5>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.3;">Quem recebeu o maior bônus em 2025?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    chatMessages.appendChild(welcomeContainer);
+    console.log('Welcome message created and shown');
 }
 
 function hideWelcomeMessage() {
