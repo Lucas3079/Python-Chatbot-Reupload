@@ -8,11 +8,11 @@ const chatMessages = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 const toastContainer = document.getElementById('toast-container');
-const welcomeOverlay = document.getElementById('welcome-overlay');
+const welcomeMessage = document.getElementById('welcome-message');
 
 // Debug: verificar se os elementos foram encontrados
 console.log('chatMessages:', chatMessages);
-console.log('welcomeOverlay:', welcomeOverlay);
+console.log('welcomeMessage:', welcomeMessage);
 
 // Estado da aplicação
 let conversationHistory = [];
@@ -39,10 +39,10 @@ function initializeApp() {
     const hasUsedBefore = localStorage.getItem('capbot-has-used');
     console.log('hasUsedBefore:', hasUsedBefore);
     
-    // Mostrar tela de boas-vindas se não há conversas salvas
+    // Mostrar mensagem de boas-vindas se não há conversas salvas
     if (!hasUsedBefore || chatHistory.length === 0) {
-        console.log('Showing welcome screen');
-        showWelcomeScreen();
+        console.log('Showing welcome message');
+        showWelcomeMessage();
     } else {
         console.log('Loading existing chat');
         loadChat(chatHistory[0].id);
@@ -205,28 +205,33 @@ function updateChatList() {
 }
 
 // Funções da tela de boas-vindas
-function showWelcomeScreen() {
-    console.log('showWelcomeScreen called');
-    console.log('welcomeOverlay element:', welcomeOverlay);
-    if (welcomeOverlay) {
-        welcomeOverlay.style.display = 'flex';
-        console.log('Welcome overlay shown');
+function showWelcomeMessage() {
+    console.log('showWelcomeMessage called');
+    console.log('welcomeMessage element:', welcomeMessage);
+    if (welcomeMessage) {
+        // Limpar mensagens existentes
+        chatMessages.innerHTML = '';
+        // Adicionar a mensagem de boas-vindas
+        chatMessages.appendChild(welcomeMessage.cloneNode(true));
+        // Mostrar a mensagem
+        const clonedMessage = chatMessages.lastElementChild;
+        clonedMessage.style.display = 'block';
+        console.log('Welcome message shown');
     } else {
-        console.log('Welcome overlay element not found');
+        console.log('Welcome message element not found');
     }
 }
 
-function hideWelcomeScreen() {
-    if (welcomeOverlay) {
-        welcomeOverlay.style.display = 'none';
-    }
+function hideWelcomeMessage() {
+    // A mensagem de boas-vindas será removida quando o usuário enviar uma mensagem
+    console.log('Welcome message will be hidden when user sends message');
     // Marcar que o usuário já usou a IA
     localStorage.setItem('capbot-has-used', 'true');
 }
 
 function sendSuggestion(suggestionText) {
-    // Esconder a tela de boas-vindas
-    hideWelcomeScreen();
+    // Esconder a mensagem de boas-vindas
+    hideWelcomeMessage();
     
     // Iniciar uma nova conversa
     startNewChat();
@@ -236,20 +241,31 @@ function sendSuggestion(suggestionText) {
     sendMessage();
 }
 
-// Função para forçar a tela de boas-vindas (para debug)
-function forceWelcomeScreen() {
+// Função para forçar a mensagem de boas-vindas (para debug)
+function forceWelcomeMessage() {
     localStorage.removeItem('capbot-has-used');
-    showWelcomeScreen();
+    showWelcomeMessage();
 }
 
 // Função de teste para forçar exibição
-function testWelcomeScreen() {
-    console.log('Testing welcome overlay...');
-    const element = document.getElementById('welcome-overlay');
-    console.log('Element found:', element);
-    if (element) {
-        element.style.display = 'flex';
-        console.log('Welcome overlay forced to show');
+function testWelcomeMessage() {
+    console.log('Testing welcome message...');
+    showWelcomeMessage();
+}
+
+// Função de fallback com alert
+function showWelcomeAlert() {
+    const suggestions = [
+        'Quanto recebi de salário líquido em maio de 2025? (Ana Souza)',
+        'Qual foi o total líquido pago no primeiro trimestre de 2025?',
+        'Quem recebeu o maior bônus em 2025?'
+    ];
+    
+    const choice = confirm('Bem-vindo à CapBot!\n\nEscolha uma sugestão:\n\n1. Salário Líquido\n2. Total Trimestral\n3. Maior Bônus\n\nClique OK para a primeira opção, Cancel para cancelar.');
+    
+    if (choice) {
+        userInput.value = suggestions[0];
+        sendMessage();
     }
 }
 
