@@ -10,6 +10,10 @@ const sendButton = document.getElementById('send-button');
 const toastContainer = document.getElementById('toast-container');
 const welcomeScreen = document.getElementById('welcome-screen');
 
+// Debug: verificar se os elementos foram encontrados
+console.log('chatMessages:', chatMessages);
+console.log('welcomeScreen:', welcomeScreen);
+
 // Estado da aplicação
 let conversationHistory = [];
 let currentTheme = 'dark'; // Tema padrão
@@ -208,7 +212,11 @@ function showWelcomeScreen() {
     console.log('welcomeScreen element:', welcomeScreen);
     if (welcomeScreen) {
         welcomeScreen.classList.remove('hidden');
-        console.log('Welcome screen shown');
+        welcomeScreen.style.display = 'flex';
+        welcomeScreen.style.opacity = '1';
+        welcomeScreen.style.visibility = 'visible';
+        console.log('Welcome screen shown - classes:', welcomeScreen.className);
+        console.log('Welcome screen style:', welcomeScreen.style.cssText);
     } else {
         console.log('Welcome screen element not found');
     }
@@ -238,6 +246,27 @@ function sendSuggestion(suggestionText) {
 function forceWelcomeScreen() {
     localStorage.removeItem('capbot-has-used');
     showWelcomeScreen();
+}
+
+// Função de teste para forçar exibição
+function testWelcomeScreen() {
+    console.log('Testing welcome screen...');
+    const element = document.getElementById('welcome-screen');
+    console.log('Element found:', element);
+    if (element) {
+        element.classList.remove('hidden');
+        element.style.display = 'flex';
+        element.style.opacity = '1';
+        element.style.visibility = 'visible';
+        element.style.position = 'absolute';
+        element.style.top = '0';
+        element.style.left = '0';
+        element.style.right = '0';
+        element.style.bottom = '0';
+        element.style.zIndex = '1000';
+        element.style.background = 'var(--bg-primary)';
+        console.log('Welcome screen forced to show');
+    }
 }
 
 function deleteChat(chatId, event) {
