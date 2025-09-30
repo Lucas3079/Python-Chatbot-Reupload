@@ -799,7 +799,7 @@ body {
 
 /* Tela de Boas-vindas */
 .welcome-screen {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -810,7 +810,8 @@ body {
     background: var(--bg-primary);
     z-index: 1000;
     transition: opacity 0.5s ease, visibility 0.5s ease;
-    backdrop-filter: blur(10px);
+    min-height: 100vh;
+    width: 100%;
 }
 
 .welcome-screen.hidden {
@@ -821,8 +822,9 @@ body {
 
 .welcome-content {
     text-align: center;
-    max-width: 900px;
+    max-width: 1000px;
     width: 90%;
+    max-width: 90vw;
     padding: 3rem 2rem;
     background: var(--bg-secondary);
     border-radius: 20px;
@@ -830,6 +832,7 @@ body {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
+    margin: 2rem;
 }
 
 .welcome-content::before {
@@ -879,22 +882,27 @@ body {
 
 .suggestion-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
+    max-width: 100%;
 }
 
 .suggestion-card {
     background: var(--bg-tertiary);
     border: 2px solid var(--border-color);
     border-radius: 16px;
-    padding: 2rem;
+    padding: 1.8rem;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     text-align: left;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .suggestion-card::before {
@@ -922,8 +930,8 @@ body {
 }
 
 .suggestion-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     border-color: var(--accent-primary);
 }
 
@@ -936,7 +944,7 @@ body {
 }
 
 .suggestion-card:hover .suggestion-icon {
-    transform: scale(1.2) rotate(5deg);
+    transform: scale(1.1);
 }
 
 .suggestion-card:hover .suggestion-text h4 {
@@ -973,6 +981,19 @@ body {
 }
 
 /* Responsividade para tela de boas-vindas */
+@media (max-width: 1024px) {
+    .welcome-content {
+        width: 95%;
+        padding: 2.5rem 2rem;
+        margin: 1rem;
+    }
+    
+    .suggestion-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .welcome-content {
         width: 95%;
@@ -997,11 +1018,12 @@ body {
     
     .suggestion-cards {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.2rem;
     }
     
     .suggestion-card {
         padding: 1.5rem;
+        min-height: 160px;
     }
     
     .suggestion-icon {
@@ -1023,6 +1045,7 @@ body {
         width: 98%;
         padding: 1.5rem 1rem;
         border-radius: 15px;
+        margin: 0.5rem;
     }
     
     .welcome-title h1 {
@@ -1035,9 +1058,18 @@ body {
     
     .suggestion-card {
         padding: 1.2rem;
+        min-height: 140px;
     }
     
     .suggestion-icon {
         font-size: 2rem;
+    }
+    
+    .suggestion-text h4 {
+        font-size: 1rem;
+    }
+    
+    .suggestion-text p {
+        font-size: 0.85rem;
     }
 }
