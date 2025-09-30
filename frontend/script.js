@@ -8,11 +8,11 @@ const chatMessages = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 const toastContainer = document.getElementById('toast-container');
-const welcomeScreen = document.getElementById('welcome-screen');
+const welcomeOverlay = document.getElementById('welcome-overlay');
 
 // Debug: verificar se os elementos foram encontrados
 console.log('chatMessages:', chatMessages);
-console.log('welcomeScreen:', welcomeScreen);
+console.log('welcomeOverlay:', welcomeOverlay);
 
 // Estado da aplicação
 let conversationHistory = [];
@@ -39,16 +39,20 @@ function initializeApp() {
     const hasUsedBefore = localStorage.getItem('capbot-has-used');
     console.log('hasUsedBefore:', hasUsedBefore);
     
-    // Sempre mostrar tela de boas-vindas se não há conversas salvas
+    // FORÇAR tela de boas-vindas para teste
+    console.log('FORCING welcome screen to show');
+    showWelcomeScreen();
+    
+    // Código original comentado para teste
+    /*
     if (!hasUsedBefore || chatHistory.length === 0) {
-        // Mostrar tela de boas-vindas
         console.log('Showing welcome screen');
         showWelcomeScreen();
     } else {
         console.log('Loading existing chat');
-        // Carregar a última conversa
         loadChat(chatHistory[0].id);
     }
+    */
 }
 
 function loadSidebarState() {
@@ -209,18 +213,18 @@ function updateChatList() {
 // Funções da tela de boas-vindas
 function showWelcomeScreen() {
     console.log('showWelcomeScreen called');
-    console.log('welcomeScreen element:', welcomeScreen);
-    if (welcomeScreen) {
-        welcomeScreen.style.display = 'flex';
-        console.log('Welcome screen shown');
+    console.log('welcomeOverlay element:', welcomeOverlay);
+    if (welcomeOverlay) {
+        welcomeOverlay.style.display = 'flex';
+        console.log('Welcome overlay shown');
     } else {
-        console.log('Welcome screen element not found');
+        console.log('Welcome overlay element not found');
     }
 }
 
 function hideWelcomeScreen() {
-    if (welcomeScreen) {
-        welcomeScreen.style.display = 'none';
+    if (welcomeOverlay) {
+        welcomeOverlay.style.display = 'none';
     }
     // Marcar que o usuário já usou a IA
     localStorage.setItem('capbot-has-used', 'true');
@@ -246,12 +250,12 @@ function forceWelcomeScreen() {
 
 // Função de teste para forçar exibição
 function testWelcomeScreen() {
-    console.log('Testing welcome screen...');
-    const element = document.getElementById('welcome-screen');
+    console.log('Testing welcome overlay...');
+    const element = document.getElementById('welcome-overlay');
     console.log('Element found:', element);
     if (element) {
         element.style.display = 'flex';
-        console.log('Welcome screen forced to show');
+        console.log('Welcome overlay forced to show');
     }
 }
 

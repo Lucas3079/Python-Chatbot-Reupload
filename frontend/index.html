@@ -79,40 +79,71 @@
                 <!-- Mensagens do chat serão inseridas aqui -->
             </div>
             
-            <!-- Tela de Boas-vindas - Fora da área de mensagens -->
-            <div class="welcome-screen" id="welcome-screen" style="display: none;">
-                <div class="welcome-content">
-                    <div class="welcome-title">
-                        <h1>Bem-vindo à CapBot</h1>
-                        <p>Sua assistente de análise financeira da Capgemini</p>
-                    </div>
+            <!-- Tela de Boas-vindas - Overlay fixo -->
+            <div id="welcome-overlay" style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 9999;
+                display: none;
+                align-items: center;
+                justify-content: center;
+            ">
+                <div style="
+                    background: white;
+                    padding: 2rem;
+                    border-radius: 20px;
+                    max-width: 800px;
+                    width: 90%;
+                    text-align: center;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                ">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1e3a8a;">Bem-vindo à CapBot</h1>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #666;">Sua assistente de análise financeira da Capgemini</p>
                     
-                    <div class="suggestions-container">
-                        <h3>Comece com uma dessas perguntas:</h3>
-                        <div class="suggestion-cards">
-                            <div class="suggestion-card" onclick="sendSuggestion('Quanto recebi de salário líquido em maio de 2025? (Ana Souza)')">
-                                <div class="suggestion-icon">💰</div>
-                                <div class="suggestion-text">
-                                    <h4>Salário Líquido</h4>
-                                    <p>Quanto recebi de salário líquido em maio de 2025? (Ana Souza)</p>
-                                </div>
-                            </div>
-                            
-                            <div class="suggestion-card" onclick="sendSuggestion('Qual foi o total líquido pago no primeiro trimestre de 2025?')">
-                                <div class="suggestion-icon">📊</div>
-                                <div class="suggestion-text">
-                                    <h4>Total Trimestral</h4>
-                                    <p>Qual foi o total líquido pago no primeiro trimestre de 2025?</p>
-                                </div>
-                            </div>
-                            
-                            <div class="suggestion-card" onclick="sendSuggestion('Quem recebeu o maior bônus em 2025?')">
-                                <div class="suggestion-icon">🏆</div>
-                                <div class="suggestion-text">
-                                    <h4>Maior Bônus</h4>
-                                    <p>Quem recebeu o maior bônus em 2025?</p>
-                                </div>
-                            </div>
+                    <h3 style="margin-bottom: 1.5rem; color: #333;">Comece com uma dessas perguntas:</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div onclick="sendSuggestion('Quanto recebi de salário líquido em maio de 2025? (Ana Souza)')" style="
+                            background: #f8fafc;
+                            border: 2px solid #e2e8f0;
+                            border-radius: 12px;
+                            padding: 1.5rem;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.borderColor='#1e3a8a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">💰</div>
+                            <h4 style="margin-bottom: 0.5rem; color: #1e3a8a;">Salário Líquido</h4>
+                            <p style="font-size: 0.9rem; color: #666;">Quanto recebi de salário líquido em maio de 2025? (Ana Souza)</p>
+                        </div>
+                        
+                        <div onclick="sendSuggestion('Qual foi o total líquido pago no primeiro trimestre de 2025?')" style="
+                            background: #f8fafc;
+                            border: 2px solid #e2e8f0;
+                            border-radius: 12px;
+                            padding: 1.5rem;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.borderColor='#1e3a8a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">📊</div>
+                            <h4 style="margin-bottom: 0.5rem; color: #1e3a8a;">Total Trimestral</h4>
+                            <p style="font-size: 0.9rem; color: #666;">Qual foi o total líquido pago no primeiro trimestre de 2025?</p>
+                        </div>
+                        
+                        <div onclick="sendSuggestion('Quem recebeu o maior bônus em 2025?')" style="
+                            background: #f8fafc;
+                            border: 2px solid #e2e8f0;
+                            border-radius: 12px;
+                            padding: 1.5rem;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.borderColor='#1e3a8a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">🏆</div>
+                            <h4 style="margin-bottom: 0.5rem; color: #1e3a8a;">Maior Bônus</h4>
+                            <p style="font-size: 0.9rem; color: #666;">Quem recebeu o maior bônus em 2025?</p>
                         </div>
                     </div>
                 </div>
