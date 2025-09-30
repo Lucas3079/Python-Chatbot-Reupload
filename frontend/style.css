@@ -799,7 +799,7 @@ body {
 
 /* Tela de Boas-vindas */
 .welcome-screen {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -808,8 +808,9 @@ body {
     align-items: center;
     justify-content: center;
     background: var(--bg-primary);
-    z-index: 10;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    backdrop-filter: blur(10px);
 }
 
 .welcome-screen.hidden {
@@ -820,51 +821,80 @@ body {
 
 .welcome-content {
     text-align: center;
-    max-width: 800px;
-    padding: 2rem;
+    max-width: 900px;
+    width: 90%;
+    padding: 3rem 2rem;
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-primary));
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 200% 0; }
+    50% { background-position: -200% 0; }
 }
 
 .welcome-title h1 {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 1rem;
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .welcome-title p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--text-secondary);
     margin-bottom: 3rem;
+    font-weight: 500;
 }
 
 .suggestions-container h3 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: var(--text-primary);
-    margin-bottom: 2rem;
-    font-weight: 600;
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .suggestion-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
     margin-top: 2rem;
 }
 
 .suggestion-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.5rem;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-align: left;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .suggestion-card::before {
@@ -873,15 +903,27 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
+}
+
+.suggestion-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(30, 64, 175, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .suggestion-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px var(--shadow);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     border-color: var(--accent-primary);
 }
 
@@ -889,32 +931,100 @@ body {
     transform: scaleX(1);
 }
 
+.suggestion-card:hover::after {
+    opacity: 1;
+}
+
 .suggestion-card:hover .suggestion-icon {
-    transform: scale(1.1);
+    transform: scale(1.2) rotate(5deg);
+}
+
+.suggestion-card:hover .suggestion-text h4 {
+    color: var(--accent-primary);
 }
 
 .suggestion-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.4s ease;
     display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.suggestion-text {
+    position: relative;
+    z-index: 2;
 }
 
 .suggestion-text h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
 }
 
 .suggestion-text p {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-secondary);
-    line-height: 1.4;
+    line-height: 1.5;
+    font-weight: 500;
 }
 
 /* Responsividade para tela de boas-vindas */
 @media (max-width: 768px) {
+    .welcome-content {
+        width: 95%;
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+    
+    .welcome-title h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .welcome-title p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .suggestions-container h3 {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .suggestion-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .suggestion-card {
+        padding: 1.5rem;
+    }
+    
+    .suggestion-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .suggestion-text h4 {
+        font-size: 1.1rem;
+    }
+    
+    .suggestion-text p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-content {
+        width: 98%;
+        padding: 1.5rem 1rem;
+        border-radius: 15px;
+    }
+    
     .welcome-title h1 {
         font-size: 2rem;
     }
@@ -923,11 +1033,11 @@ body {
         font-size: 1rem;
     }
     
-    .welcome-content {
-        padding: 1rem;
+    .suggestion-card {
+        padding: 1.2rem;
     }
     
-    .suggestion-cards {
-        grid-template-columns: 1fr;
+    .suggestion-icon {
+        font-size: 2rem;
     }
 }
