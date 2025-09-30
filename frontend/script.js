@@ -8,6 +8,7 @@ const chatMessages = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 const toastContainer = document.getElementById('toast-container');
+const welcomeScreen = document.getElementById('welcome-screen');
 
 // Estado da aplicação
 let conversationHistory = [];
@@ -30,12 +31,20 @@ function initializeApp() {
     // Carregar estado da sidebar
     loadSidebarState();
     
-    // Se não há conversas salvas, iniciar uma nova
-    if (chatHistory.length === 0) {
-        startNewChat();
+    // Verificar se é a primeira vez que o usuário abre a IA
+    const hasUsedBefore = localStorage.getItem('capbot-has-used');
+    
+    if (!hasUsedBefore) {
+        // Mostrar tela de boas-vindas
+        showWelcomeScreen();
     } else {
-        // Carregar a última conversa
-        loadChat(chatHistory[0].id);
+        // Se não há conversas salvas, iniciar uma nova
+        if (chatHistory.length === 0) {
+            startNewChat();
+        } else {
+            // Carregar a última conversa
+            loadChat(chatHistory[0].id);
+        }
     }
 }
 
@@ -194,6 +203,33 @@ function updateChatList() {
     });
 }
 
+// Funções da tela de boas-vindas
+function showWelcomeScreen() {
+    if (welcomeScreen) {
+        welcomeScreen.classList.remove('hidden');
+    }
+}
+
+function hideWelcomeScreen() {
+    if (welcomeScreen) {
+        welcomeScreen.classList.add('hidden');
+    }
+    // Marcar que o usuário já usou a IA
+    localStorage.setItem('capbot-has-used', 'true');
+}
+
+function sendSuggestion(suggestionText) {
+    // Esconder a tela de boas-vindas
+    hideWelcomeScreen();
+    
+    // Iniciar uma nova conversa
+    startNewChat();
+    
+    // Enviar a sugestão como mensagem
+    userInput.value = suggestionText;
+    sendMessage();
+}
+
 function deleteChat(chatId, event) {
     event.stopPropagation();
     
@@ -339,6 +375,11 @@ function hideLoading() {
 async function sendMessage() {
     const message = userInput.value.trim();
     if (message === '') return;
+
+    // Esconder a tela de boas-vindas se estiver visível
+    if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
+        hideWelcomeScreen();
+    }
 
     addMessage('user', message);
     userInput.value = ''; // Limpa o input imediatamente
