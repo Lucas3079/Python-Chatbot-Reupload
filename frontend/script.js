@@ -226,7 +226,7 @@ function showWelcomeMessage() {
                     <h4 style="margin-bottom: 1.5rem; color: var(--text-primary);">Comece com uma dessas perguntas:</h4>
                     
                     <div style="display: flex; flex-direction: row; gap: 1rem; justify-content: center; align-items: stretch; max-width: 800px; margin: 0 auto;">
-                        <div onclick="sendSuggestion('Quanto recebi de salário líquido em maio de 2025? (Ana Souza)')" style="
+                        <div onclick="sendSuggestion('Me fale a receita de um bolo de chocolate')" style="
                             background: var(--bg-tertiary);
                             border: 2px solid var(--border-color);
                             border-radius: 12px;
@@ -238,12 +238,12 @@ function showWelcomeMessage() {
                             max-width: 200px;
                             text-align: center;
                         " onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">💰</div>
-                            <h5 style="margin-bottom: 0.5rem; color: var(--accent-primary); font-size: 1rem; font-weight: 600;">Salário Líquido</h5>
-                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Quanto recebi de salário líquido em maio de 2025? (Ana Souza)</p>
+                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">🍰</div>
+                            <h5 style="margin-bottom: 0.5rem; color: var(--accent-primary); font-size: 1rem; font-weight: 600;">Receita de Bolo</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Me fale a receita de um bolo de chocolate</p>
                         </div>
                         
-                        <div onclick="sendSuggestion('Qual foi o total líquido pago no primeiro trimestre de 2025?')" style="
+                        <div onclick="sendSuggestion('Por que o céu é azul?')" style="
                             background: var(--bg-tertiary);
                             border: 2px solid var(--border-color);
                             border-radius: 12px;
@@ -255,12 +255,12 @@ function showWelcomeMessage() {
                             max-width: 200px;
                             text-align: center;
                         " onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">📊</div>
-                            <h5 style="margin-bottom: 0.5rem; color: var(--accent-primary); font-size: 1rem; font-weight: 600;">Total Trimestral</h5>
-                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Qual foi o total líquido pago no primeiro trimestre de 2025?</p>
+                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">🌌</div>
+                            <h5 style="margin-bottom: 0.5rem; color: var(--accent-primary); font-size: 1rem; font-weight: 600;">Pergunta Científica</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Por que o céu é azul?</p>
                         </div>
                         
-                        <div onclick="sendSuggestion('Quem recebeu o maior bônus em 2025?')" style="
+                        <div onclick="sendSuggestion('Conte uma piada sobre programação')" style="
                             background: var(--bg-tertiary);
                             border: 2px solid var(--border-color);
                             border-radius: 12px;
@@ -272,9 +272,9 @@ function showWelcomeMessage() {
                             max-width: 200px;
                             text-align: center;
                         " onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">🏆</div>
-                            <h5 style="margin-bottom: 0.5rem; color: var(--accent-primary); font-size: 1rem; font-weight: 600;">Maior Bônus</h5>
-                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Quem recebeu o maior bônus em 2025?</p>
+                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">😄</div>
+                            <h5 style="margin-bottom: 0.5rem; color: var(--accent-primary); font-size: 1rem; font-weight: 600;">Piada</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Conte uma piada sobre programação</p>
                         </div>
                     </div>
             </div>
