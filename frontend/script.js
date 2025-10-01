@@ -286,8 +286,13 @@ function showWelcomeMessage() {
 }
 
 function hideWelcomeMessage() {
-    // Limpar o conteúdo das mensagens para esconder a tela de boas-vindas
-    chatMessages.innerHTML = '';
+    // Esconder apenas a mensagem de boas-vindas, não limpar todo o chat
+    const welcomeElements = chatMessages.querySelectorAll('[style*="display: flex"]');
+    welcomeElements.forEach(element => {
+        if (element.innerHTML.includes('Bem-vindo à CapBot')) {
+            element.remove();
+        }
+    });
     console.log('Welcome message hidden');
     // Marcar que o usuário já usou a IA
     localStorage.setItem('capbot-has-used', 'true');
