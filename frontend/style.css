@@ -269,6 +269,9 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--bg-primary);
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Header do Chat */
@@ -280,6 +283,9 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .header-left {
