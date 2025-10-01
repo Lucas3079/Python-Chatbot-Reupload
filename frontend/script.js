@@ -286,8 +286,9 @@ function showWelcomeMessage() {
 }
 
 function hideWelcomeMessage() {
-    // A mensagem de boas-vindas será removida quando o usuário enviar uma mensagem
-    console.log('Welcome message will be hidden when user sends message');
+    // Limpar o conteúdo das mensagens para esconder a tela de boas-vindas
+    chatMessages.innerHTML = '';
+    console.log('Welcome message hidden');
     // Marcar que o usuário já usou a IA
     localStorage.setItem('capbot-has-used', 'true');
 }
@@ -479,12 +480,7 @@ async function sendMessage() {
     if (message === '') return;
 
     // Esconder a mensagem de boas-vindas se estiver visível
-    const welcomeElements = document.querySelectorAll('[id*="welcome"]');
-    welcomeElements.forEach(element => {
-        if (element.style.display !== 'none') {
-            element.style.display = 'none';
-        }
-    });
+    hideWelcomeMessage();
 
     addMessage('user', message);
     userInput.value = ''; // Limpa o input imediatamente
