@@ -1,34 +1,8 @@
-# 🤖 CapBot - Chatbot de Análise Financeira
+# CapBot - Chatbot de Análise Financeira
 
 Um chatbot inteligente em Python que combina **LLM** (Large Language Model) com **RAG** (Retrieval-Augmented Generation) para consultas de folha de pagamento, além de conversas gerais e busca na web. Desenvolvido com interface moderna HTML/CSS/JS estilo ChatGPT.
 
-## 🎯 Funcionalidades
-
-### ✅ Requisitos Mínimos (Must-have)
-- **Chat básico** com LLM (OpenAI GPT-3.5-turbo, Groq, Anthropic)
-- **RAG sobre folha de pagamento** com consultas por:
-  - Nome do funcionário
-  - Competência (YYYY-MM)
-  - Salário líquido, bônus, descontos (INSS, IRRF)
-  - Data de pagamento
-  - Totais por período
-- **Citação de fontes** do dataset em todas as respostas
-- **Configuração via .env** para chaves de API
-- **Tratamento de erros** e logs estruturados
-
-### 🚀 Funcionalidades Extras (Nice-to-have)
-- **Interface web moderna** estilo ChatGPT com HTML/CSS/JS
-- **Busca na web** com citação de fontes
-- **Memória de conversa** (contexto entre turnos)
-- **API REST** completa com FastAPI
-- **Múltiplos temas** (Dark, Light, Green, Red)
-- **Histórico de conversas** com persistência local
-- **Sidebar colapsível** para melhor UX
-- **Tela de boas-vindas** com sugestões interativas
-- **Formatação brasileira** (moeda e datas)
-- **Observabilidade** com logs estruturados
-
-## 🏗️ Arquitetura
+## Arquitetura
 
 ```
 📁 projeto/
@@ -65,7 +39,7 @@ Um chatbot inteligente em Python que combina **LLM** (Large Language Model) com 
 └── README.md                 # Este arquivo
 ```
 
-## 🚀 Instalação e Configuração
+## Instalação e Configuração
 
 ### 1. Clone o repositório
 ```bash
@@ -78,7 +52,10 @@ cd chatbot-rag-folha-pagamento
 pip install -r requirements.txt
 ```
 
-### 3. Configure as variáveis de ambiente
+### 3. Configuração (Opcional)
+O projeto funciona **imediatamente** em modo demo sem configuração adicional!
+
+**Para usar LLMs reais (recomendado):**
 ```bash
 # Copie o arquivo de exemplo
 cp env.example .env
@@ -89,12 +66,12 @@ nano .env
 
 **Configuração mínima no .env:**
 ```env
-# Pelo menos uma chave de LLM é obrigatória
+# Pelo menos uma chave de LLM é necessária para respostas reais
 OPENAI_API_KEY=sua_chave_openai_aqui
 # OU
 GROQ_API_KEY=sua_chave_groq_aqui
 
-# Configurações da aplicação
+# Configurações da aplicação (opcionais)
 APP_HOST=localhost
 APP_PORT=8000
 DEBUG=True
@@ -102,45 +79,55 @@ PAYROLL_DATA_PATH=./data/payroll.csv
 WEB_SEARCH_ENABLED=True
 ```
 
-### 4. Verifique o dataset
+**Nota:** Sem chaves de API, o sistema funciona em **modo demo** com respostas simuladas.
+
+### 4. Dataset
 O arquivo `data/payroll.csv` já está incluído com os dados de exemplo:
 - **Ana Souza** (E001): 6 registros (jan-jun/2025)
 - **Bruno Lima** (E002): 6 registros (jan-jun/2025)
 
-## 🎮 Como Usar
+## Como Usar
 
-### Opção 1: Script Automático (Windows - Recomendado)
+### ⚡ Início Rápido (Recomendado)
 
-Execute o script que inicia ambos os servidores automaticamente:
+**1. Execute a API:**
+```bash
+python main.py
+```
+✅ API rodando em: http://localhost:8000
+
+**2. Abra o frontend:**
+```bash
+# Opção A: Servidor Python simples (recomendado)
+python -m http.server 3000 --directory frontend
+
+# Opção B: Script personalizado (pode ter problemas de encoding)
+python run_frontend.py
+```
+✅ Frontend rodando em: http://localhost:3000
+
+**3. Acesse no navegador:**
+- **Interface principal:** http://localhost:3000
+- **API docs:** http://localhost:8000/docs
+
+### 🚀 Script Automático (Windows)
+
+Execute o script que inicia ambos os servidores:
 
 ```bash
 start_servers.bat
 ```
 
-Isso irá:
-- ✅ Iniciar a API na porta 8000
-- ✅ Iniciar o frontend na porta 3000
-- ✅ Abrir automaticamente no navegador
+### 📱 Acesso Direto (Mais Simples)
 
-### Opção 2: Manual (Qualquer SO)
+**Alternativa mais simples:**
+1. Execute apenas: `python main.py`
+2. Acesse: http://localhost:8000 (servirá o frontend automaticamente)
 
-**Terminal 1 - API Backend:**
-```bash
-python main.py
-```
-A API estará disponível em: http://localhost:8000
+### 🔧 Modo Demo vs Real
 
-**Terminal 2 - Frontend:**
-```bash
-python run_frontend.py
-```
-A interface estará disponível em: http://localhost:3000
-
-### Opção 3: Apenas API
-```bash
-python main.py
-```
-Acesse a documentação da API em: http://localhost:8000/docs
+- **Sem chaves de API:** Funciona em modo demo com respostas simuladas
+- **Com chaves de API:** Usa LLMs reais (OpenAI/Groq) para respostas inteligentes
 
 ## 🎨 Interface do Usuário
 
