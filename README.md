@@ -6,6 +6,8 @@ Link da IA funcionando online:
 
 https://python-chatbot-3.onrender.com/
 
+!AVISO! Pela falta de tempo, o render foi o único site que eu consegui fazer a IA funcionar online, porém ele não deixa ficar online por mais de 15 minutos. Para funcionar, basta entrar no link e esperar 2 - 3 minutos para o render ligar o site.
+
 ## Sobre
 
 O **CapBot** é uma aplicação de IA conversacional que combina:
@@ -209,6 +211,10 @@ python main.py --port 8001
 # No Windows, execute como administrador
 # No Linux/Mac, use sudo se necessário
 ```
+### Limitações
+1. Alucina um pouco, talvez tenha que mandar a pergunta sobre o financeiro (do desafio) 2x
+2. Não está completamente responsivo, especialmente no celular
+3. Normalmente precisa clicar no X duas vezes para poder excluir uma conversa
 
 ### Não consegue acessar http://localhost:8000
 1. Verifique se o comando `python main.py` está rodando
