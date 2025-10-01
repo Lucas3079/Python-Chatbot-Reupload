@@ -2,6 +2,7 @@
 import os
 import uvicorn
 from app.config import Config
+from app.api import app
 
 if __name__ == "__main__":
     try:
