@@ -34,10 +34,10 @@ pip install -r requirements.txt
 ### 3. Configuração (Opcional)
 O projeto funciona **imediatamente** em modo demo sem configuração!
 
-**Para usar LLMs reais:**
+**Para usar LLMs reais (recomendado):**
 ```bash
 cp env.example .env
-# Edite o .env com suas chaves de API
+# Edite o .env com suas chaves de API (veja seção "Configuração de API Keys")
 ```
 
 ## Como Usar
@@ -83,17 +83,10 @@ start_servers.bat
 - Interface moderna com 4 temas
 - Histórico de conversas
 - Sidebar colapsível
-- Busca na web
+- Busca na web simplificada
 - Modo demo (sem API keys)
 
 ## Exemplos de Uso
-
-```
-"Quanto recebi de salário líquido em maio de 2025? (Ana Souza)"
-"Qual foi o total líquido pago no primeiro trimestre de 2025?"
-"Quem recebeu o maior bônus em 2025?"
-"Qual a taxa Selic atual?"
-```
 
 ## API Endpoints
 
@@ -121,21 +114,27 @@ start_servers.bat
 
 ## Configuração de API Keys
 
-Crie um arquivo `.env` com pelo menos uma chave:
+**O projeto funciona imediatamente em modo demo sem configuração!**
+
+Para usar LLMs reais, crie um arquivo `.env` com pelo menos uma chave:
 
 ```env
-# OpenAI (pago)
-OPENAI_API_KEY=sua_chave_openai
+# Opção 1: OpenAI (pago, mais preciso)
+OPENAI_API_KEY=sua_chave_openai_aqui
 
-# Groq (gratuito)
-GROQ_API_KEY=sua_chave_groq
+# Opção 2: Groq (gratuito, mais rápido)
+GROQ_API_KEY=sua_chave_groq_aqui
 
 # Configurações opcionais
 WEB_SEARCH_ENABLED=True
 DEBUG=True
 ```
 
-**Nota:** Sem chaves, o sistema funciona em modo demo com respostas simuladas.
+**Como obter as chaves:**
+- **OpenAI:** https://platform.openai.com/api-keys
+- **Groq:** https://console.groq.com/keys
+
+**Nota:** Sem chaves, o sistema funciona em modo demo com respostas simuladas para demonstração.
 
 ## Deploy
 
@@ -162,18 +161,10 @@ curl -X POST http://localhost:8000/chat \
 curl http://localhost:8000/health
 ```
 
-## Contribuição
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-
 ## Licença
 
 Este projeto foi desenvolvido para o processo seletivo da Capgemini.
 
 ## Autor
 
-Desenvolvido para o processo seletivo da Capgemini - 2025
+Lucas Monteiro github https://github.com/Lucas3079
