@@ -230,7 +230,7 @@ function showWelcomeMessage() {
                     
                     <h4 style="margin-bottom: 1.5rem; color: var(--text-primary);">Comece com uma dessas perguntas:</h4>
                     
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; justify-items: center; max-width: 500px; margin: 0 auto;">
+                    <div style="display: flex; flex-direction: row; gap: 1rem; justify-content: center; align-items: stretch; flex-wrap: wrap; max-width: 700px; margin: 0 auto;">
                         <div onclick="sendSuggestion('Quanto recebi de salário líquido em maio de 2025? (Ana Souza)')" style="
                             background: var(--bg-tertiary);
                             border: 2px solid var(--border-color);
@@ -238,7 +238,8 @@ function showWelcomeMessage() {
                             padding: 1.5rem;
                             cursor: pointer;
                             transition: all 0.3s ease;
-                            width: 100%;
+                            flex: 1;
+                            min-width: 200px;
                             max-width: 220px;
                             text-align: center;
                         " onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
@@ -254,7 +255,8 @@ function showWelcomeMessage() {
                             padding: 1.5rem;
                             cursor: pointer;
                             transition: all 0.3s ease;
-                            width: 100%;
+                            flex: 1;
+                            min-width: 200px;
                             max-width: 220px;
                             text-align: center;
                         " onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
@@ -270,7 +272,8 @@ function showWelcomeMessage() {
                             padding: 1.5rem;
                             cursor: pointer;
                             transition: all 0.3s ease;
-                            width: 100%;
+                            flex: 1;
+                            min-width: 200px;
                             max-width: 220px;
                             text-align: center;
                         " onmouseover="this.style.borderColor='var(--accent-primary)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
