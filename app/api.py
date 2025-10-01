@@ -65,12 +65,17 @@ if os.path.exists("frontend"):
 @app.get("/")
 async def root():
     """Endpoint raiz - serve o frontend."""
-    if os.path.exists("frontend/index.html"):
-        return FileResponse("frontend/index.html")
+    try:
+        if os.path.exists("frontend/index.html"):
+            return FileResponse("frontend/index.html")
+    except Exception as e:
+        logger.warning(f"Erro ao servir frontend: {e}")
+    
     return {
-        "message": "Chatbot RAG - Folha de Pagamento",
+        "message": "CapBot - Chatbot de Análise Financeira",
         "version": "1.0.0",
-        "status": "running"
+        "status": "running",
+        "health": "ok"
     }
 
 @app.get("/health")
