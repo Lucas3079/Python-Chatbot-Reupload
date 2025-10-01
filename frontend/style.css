@@ -269,9 +269,6 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--bg-primary);
-    width: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 /* Header do Chat */
