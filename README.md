@@ -18,7 +18,11 @@ O **CapBot** é uma aplicação de IA conversacional que combina:
 - **Dados:** Pandas, CSV
 - **Deploy:** Railway, Docker
 
-## Instalação
+## Instalação Passo a Passo
+
+### Pré-requisitos
+- Python 3.8 ou superior
+- Git (para clonar o repositório)
 
 ### 1. Clone o repositório
 ```bash
@@ -31,18 +35,36 @@ cd chatbot-rag-folha-pagamento
 pip install -r requirements.txt
 ```
 
-### 3. Configuração (Opcional)
-O projeto funciona **imediatamente** em modo demo sem configuração!
-
-**Para usar LLMs reais (recomendado):**
+**Nota:** Se der erro, tente:
 ```bash
-cp env.example .env
-# Edite o .env com suas chaves de API (veja seção "Configuração de API Keys")
+pip install --upgrade pip
+pip install -r requirements.txt
 ```
+
+### 3. Teste se está funcionando
+```bash
+python main.py
+```
+
+Se aparecer algo como "Uvicorn running on http://localhost:8000", está funcionando! Pressione `Ctrl+C` para parar.
 
 ## Como Usar
 
-### Opção 1: Início Rápido (Recomendado)
+### Opção 1: Mais Simples (Recomendado para iniciantes)
+
+**Passo 1:** Execute apenas um comando:
+```bash
+python main.py
+```
+
+**Passo 2:** Abra seu navegador e acesse:
+```
+http://localhost:8000
+```
+
+**Pronto!** O chatbot já está funcionando em modo demo.
+
+### Opção 2: Interface Separada (Para desenvolvedores)
 
 **Terminal 1 - API:**
 ```bash
@@ -56,19 +78,40 @@ python -m http.server 3000 --directory frontend
 
 **Acesse:** http://localhost:3000
 
-### Opção 2: Acesso Direto (Mais Simples)
-
-```bash
-python main.py
-```
-
-**Acesse:** http://localhost:8000
-
 ### Opção 3: Script Automático (Windows)
 
 ```bash
 start_servers.bat
 ```
+
+## Configuração de API Keys (Opcional)
+
+**IMPORTANTE:** O projeto funciona perfeitamente sem configuração! As chaves são apenas para usar LLMs reais.
+
+### Para usar LLMs reais:
+
+**1. Obtenha uma chave gratuita do Groq:**
+- Acesse: https://console.groq.com/keys
+- Crie uma conta gratuita
+- Gere uma nova chave
+
+**2. Configure a chave:**
+```bash
+# Copie o arquivo de exemplo
+cp env.example .env
+
+# Edite o arquivo .env e adicione sua chave
+GROQ_API_KEY=sua_chave_groq_aqui
+```
+
+**3. Reinicie o projeto:**
+```bash
+python main.py
+```
+
+### Diferenças:
+- **Sem chave:** Modo demo com respostas simuladas
+- **Com chave:** Respostas reais de IA
 
 ## Funcionalidades
 
@@ -87,6 +130,13 @@ start_servers.bat
 - Modo demo (sem API keys)
 
 ## Exemplos de Uso
+
+```
+"Quanto recebi de salário líquido em maio de 2025? (Ana Souza)"
+"Qual foi o total líquido pago no primeiro trimestre de 2025?"
+"Quem recebeu o maior bônus em 2025?"
+"Qual a taxa Selic atual?"
+```
 
 ## API Endpoints
 
@@ -111,30 +161,6 @@ start_servers.bat
 │   └── payroll.csv        # Dataset de folha
 └── requirements.txt       # Dependências
 ```
-
-## Configuração de API Keys
-
-**O projeto funciona imediatamente em modo demo sem configuração!**
-
-Para usar LLMs reais, crie um arquivo `.env` com pelo menos uma chave:
-
-```env
-# Opção 1: OpenAI (pago, mais preciso)
-OPENAI_API_KEY=sua_chave_openai_aqui
-
-# Opção 2: Groq (gratuito, mais rápido)
-GROQ_API_KEY=sua_chave_groq_aqui
-
-# Configurações opcionais
-WEB_SEARCH_ENABLED=True
-DEBUG=True
-```
-
-**Como obter as chaves:**
-- **OpenAI:** https://platform.openai.com/api-keys
-- **Groq:** https://console.groq.com/keys
-
-**Nota:** Sem chaves, o sistema funciona em modo demo com respostas simuladas para demonstração.
 
 ## Deploy
 
@@ -161,10 +187,30 @@ curl -X POST http://localhost:8000/chat \
 curl http://localhost:8000/health
 ```
 
-## Licença
+## Solução de Problemas
 
-Este projeto foi desenvolvido para o processo seletivo da Capgemini.
+### Erro: "ModuleNotFoundError"
+```bash
+pip install -r requirements.txt
+```
+
+### Erro: "Port already in use"
+```bash
+# Pare outros processos na porta 8000 ou use outra porta
+python main.py --port 8001
+```
+
+### Erro: "Permission denied"
+```bash
+# No Windows, execute como administrador
+# No Linux/Mac, use sudo se necessário
+```
+
+### Não consegue acessar http://localhost:8000
+1. Verifique se o comando `python main.py` está rodando
+2. Aguarde aparecer "Application startup complete"
+3. Tente http://127.0.0.1:8000
 
 ## Autor
 
-Lucas Monteiro github https://github.com/Lucas3079
+Lucas Monteiro - https://github.com/Lucas3079
