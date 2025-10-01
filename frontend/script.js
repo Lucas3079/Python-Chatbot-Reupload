@@ -218,13 +218,8 @@ function showWelcomeMessage() {
     `;
     
     welcomeContainer.innerHTML = `
-        <div class="message-container assistant" style="max-width: 700px; width: 100%; margin: 0 auto;">
-            <div class="message-avatar">
-                <img src="capgemini-icon.png.png" alt="CapBot" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%; display: block;">
-            </div>
-            <div class="message-bubble">
-                <div class="capbot-header">CapBot</div>
-                <div style="text-align: center; padding: 2.5rem; max-width: 600px; margin: 0 auto;">
+        <div style="max-width: 700px; width: 100%; margin: 0 auto;">
+            <div style="text-align: center; padding: 2.5rem; max-width: 600px; margin: 0 auto;">
                     <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Bem-vindo à CapBot</h2>
                     <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">Sua assistente de análise financeira da Capgemini</p>
                     
@@ -282,7 +277,6 @@ function showWelcomeMessage() {
                             <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Quem recebeu o maior bônus em 2025?</p>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     `;
