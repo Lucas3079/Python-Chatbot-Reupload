@@ -287,12 +287,15 @@ function showWelcomeMessage() {
 
 function hideWelcomeMessage() {
     // Esconder apenas a mensagem de boas-vindas, não limpar todo o chat
-    const welcomeElements = chatMessages.querySelectorAll('[style*="display: flex"]');
-    welcomeElements.forEach(element => {
-        if (element.innerHTML.includes('Bem-vindo à CapBot')) {
+    const allElements = chatMessages.children;
+    for (let i = allElements.length - 1; i >= 0; i--) {
+        const element = allElements[i];
+        if (element.innerHTML.includes('Bem-vindo à CapBot') || 
+            element.innerHTML.includes('Comece com uma dessas perguntas')) {
             element.remove();
+            console.log('Welcome message element removed');
         }
-    });
+    }
     console.log('Welcome message hidden');
     // Marcar que o usuário já usou a IA
     localStorage.setItem('capbot-has-used', 'true');
@@ -302,10 +305,7 @@ function sendSuggestion(suggestionText) {
     // Esconder a mensagem de boas-vindas
     hideWelcomeMessage();
     
-    // Iniciar uma nova conversa
-    startNewChat();
-    
-    // Enviar a sugestão como mensagem
+    // Enviar a sugestão como mensagem (sem iniciar nova conversa)
     userInput.value = suggestionText;
     sendMessage();
 }
