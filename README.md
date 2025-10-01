@@ -2,6 +2,10 @@
 
 Um chatbot inteligente com RAG (Retrieval-Augmented Generation) para consultas de folha de pagamento, desenvolvido para o processo seletivo da Capgemini.
 
+Link da IA funcionando online:
+
+https://python-chatbot-3.onrender.com/
+
 ## Sobre
 
 O **CapBot** é uma aplicação de IA conversacional que combina:
