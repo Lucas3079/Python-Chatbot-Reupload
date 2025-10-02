@@ -9,6 +9,7 @@
 ### 1. Preparar o Repositório
 
 ✅ **Arquivos já configurados:**
+
 - `Procfile` - Configuração Railway
 - `railway.json` - Configurações específicas
 - `requirements.txt` - Dependências
@@ -36,7 +37,7 @@ git push origin main
 No Railway, vá em **Variables** e adicione:
 
 ```
-GROQ_API_KEY=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
+GROQ_API_KEY=sua chave groq aqui
 WEB_SEARCH_ENABLED=True
 RAILWAY_ENVIRONMENT=production
 ALLOWED_ORIGINS=*
@@ -53,6 +54,7 @@ ALLOWED_ORIGINS=*
 ### 6. Testar
 
 Após o deploy, teste:
+
 - ✅ Interface carrega
 - ✅ Chat funciona
 - ✅ Consultas de folha funcionam
